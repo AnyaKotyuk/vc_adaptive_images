@@ -1,10 +1,10 @@
 <?php
 
-if (class_exists('WPBakeryShortCode')) {
-
+if (!class_exists('WPBakeryShortCode')) {
+    return;
 }
+
 include 'shortcode.class.php';
 include 'functions.php';
 
-
-add_action('init', array('AdaptiveImages', 'init'));
+add_action('init', 'init_adaptive_image');

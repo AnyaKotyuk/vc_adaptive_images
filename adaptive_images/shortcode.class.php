@@ -9,26 +9,34 @@
 
 class AdaptiveImages {
 
+    protected $path; // shortcode path
+    private $shortcode_name = 'adaptive_image';
+
+    public function __construct()
+    {
+        $this->path = get_stylesheet_directory_uri().'/vc_shortcodes/adaptive_images/';
+    }
 
     /**
      * VC element initialisation
      *
      */
-    public static function init(){
-        add_shortcode('adaptive_image', array('AdaptiveImages', 'shortcode'));
-        self::config();
+    public function init(){
+        add_shortcode($this->shortcode_name, array($this, 'shortcode'));
+        $this->config();
+        wp_enqueue_style('vc-adaptive-image', $this->path.'assets/style.css');
     }
 
     /*
      * Configure vc element
      *
      */
-    protected static function config()
+    protected function config()
     {
         vc_map(
             array(
                 "name" => __("Adaptive image", "fruitful"),
-                "base" => "adaptive_image",
+                "base" => $this->shortcode_name,
                 "icon" => "icon_vc_button",
                 "category" => __('Fruitful', "fruitful"),
                 "description" => __('Create adaptive image element with different images for desktop, tablet, mobile.', 'fruitful'),
@@ -80,9 +88,9 @@ class AdaptiveImages {
      * @param array $atts - shortcode parameters
      * @return string
      */
-    public static function shortcode($atts = array())
+    public function shortcode($atts = array())
     {
-        $atts = vc_map_get_attributes('adaptive_image', $atts);
+        $atts = vc_map_get_attributes($this->shortcode_name, $atts);
         extract($atts);
 
         // if !isset image for desktop

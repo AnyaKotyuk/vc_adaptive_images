@@ -1,8 +1,19 @@
 <?php
 
+/**
+ * Call shortcode initialisation on init action
+ *
+ * @return void
+ */
+function init_adaptive_image()
+{
+    $adaptive_image = new AdaptiveImages;
+    $adaptive_image->init();
+}
 
 /**
  * Get video url by link
+ *
  * @param null $video_link
  * @return bool|mixed
  */

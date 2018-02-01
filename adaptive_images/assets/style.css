@@ -1,0 +1,22 @@
+.full-height{
+    height: 100vh;
+    position: relative;
+}
+.full-height picture *, .full-height iframe{
+    height: 100%;
+    width: 100%;
+
+}
+.full-height picture *{
+    object-fit: cover;
+}
+.full-height iframe{
+    position: absolute;
+    top: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .adaptive-images iframe{
+        display: none;
+    }
+}
