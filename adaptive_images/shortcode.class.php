@@ -22,8 +22,8 @@ class AdaptiveImages {
      *
      */
     public function init(){
-        add_shortcode($this->shortcode_name, array($this, 'shortcode'));
         $this->config();
+        add_shortcode($this->shortcode_name, array($this, 'shortcode'));
         wp_enqueue_style('vc-adaptive-image', $this->path.'assets/style.css');
     }
 
@@ -100,7 +100,8 @@ class AdaptiveImages {
         $image_tablet_url = (!empty($image_tablet))?wp_get_attachment_url($image_tablet):false;
         $image_desktop_url = (!empty($image_desktop))?wp_get_attachment_url($image_desktop):false;
 
-        $video = get_video_url($video_link);
+        $video = get_video_url($video_link); // transform video url to standard format
+
         ob_start();
         include 'template.php';
         return ob_get_clean();

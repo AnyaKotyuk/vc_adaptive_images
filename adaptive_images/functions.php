@@ -32,7 +32,7 @@ function get_video_url($video_link = null)
         $link = str_replace('embed', '', $link);
         if($link == 'watch') $link = $video_vars['v'];
         return 'https://www.youtube.com/embed/'.$link;
-        // if vimeo
+    // if vimeo
     } elseif (strpos($video_components['host'], 'vimeo') !== false) {
         $link = str_replace('/', '', $video_components['path']);
         $link = str_replace('video', '', $link);
